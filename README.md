@@ -12,8 +12,8 @@ So, clone the repository and click on index.html.
 
 I created 2 files:
 
-*js/user-list.js* contains the list of user with food and drink preferences.
-*js/venues-list.js* contains the list of venues.
+**js/user-list.js** contains the list of user with food and drink preferences.
+**js/venues-list.js** contains the list of venues.
 
 User and venues lists are defined *const* to be sure they are not affected by overwriting and/or changes.
 
@@ -23,11 +23,11 @@ socialize is an object ready for unit test built to manage the list of available
 
 The most important methods returned by socialize are:
 
-*getVenuesListComputed* returns an object that contains the list of available / avoid venues.
+**getVenuesListComputed** returns an object that contains the list of available / avoid venues.
 
-*getAvailableVenues* returns an object that contains the list of available venues.
+**getAvailableVenues** returns an object that contains the list of available venues.
 
-*getAvoidVenues* returns ad object that contains the list of avoid venues.
+**getAvoidVenues** returns ad object that contains the list of avoid venues.
 
 
 ### React
@@ -36,9 +36,9 @@ I built a script in React.js that contains the logic to manipulate the DOM and p
 
 In particular I created a React Element called VenuesListRender.
 
-*VenuesListRender* contains an attribute called 'list' used to pass the list of available and avoid venues.
+**VenuesListRender** contains an attribute called 'list' used to pass the list of available and avoid venues.
 
-*NOTE:* available and avoid venues are generated using the relative socialize methods.
+**NOTE:** available and avoid venues are generated using the relative socialize methods.
 
 ## Other notes to keep the exercise simple.
 
