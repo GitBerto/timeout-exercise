@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Time Out - exercise</title>
+
+        <script src="https://fb.me/react-15.0.0.js"></script>
+        <script src="https://fb.me/react-dom-15.0.0.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+        <script type="text/javascript" src="js/user-list.js"></script>
+        <script type="text/javascript" src="js/venues-list.js"></script>
+
+    </head>
+
+    <body>
+
+        <section class="venues-list">
+
+            <div class="venues-list__title">Place to go:</div>
+            <div id="available-venues" class="venues-list__list"></div>
+
+            <div class="venues-list__title">Places to avoid:</div>
+            <div id="avoid-venues" class="venues-list__list"></div>
+
+        </section>
+
+        <script type="text/javascript" src="js/socialize.js"></script>
+
+        <script type="text/babel">
+
+            (function(){
+
+                let config = {},
+                    cache  = {
+
+                        availableVenues : document.getElementById('available-venues'),
+                        avoidVenues     : document.getElementById('avoid-venues')
+
+                    },
+
+                    VenuesListRender = React.createClass({
+
+                        buildVenueList: function(data, type) {
+
+                            let typeError = type === 'no-food' ? 'to eat' : type === 'no-drink' ? 'to drink' : '';
+
+                            return (
+
+                                  <ul>
+
+                                      {data.map((item, i) => {
+
+                                          if (!type) {
+
+                                              return (
+
+                                                  <li key={i}>
+
+                                                      {item.name}
+                                                      {item.userWithNoFoodOption ? this.buildVenueList(item.userWithNoFoodOption, 'no-food') : ''}
+                                                      {item.userWithNoFoodOption ? this.buildVenueList(item.userWithNoDrinkOption, 'no-drink') : ''}
+
+                                                  </li>
+
+                                              );
+
+                                          } else {
+
+                                              return (
+
+                                                  <li key={i}>
+
+                                                      There is nothing for {item} to {typeError}
+
+                                                  </li>
+
+                                              );
+
+                                          }
+
+                                      })}
+
+                                  </ul>
+
+                            );
+
+                        },
+
+                        render: function() {
+
+                            return (
+
+                                this.buildVenueList(this.props.list)
+
+                            );
+
+                        }
+
+                   });
+
+                   ReactDOM.render(<VenuesListRender list={socialize.getAvailableVenues()} />, cache.availableVenues);
+                   ReactDOM.render(<VenuesListRender list={socialize.getAvoidVenues()} />, cache.avoidVenues);
+
+              })()
+
+        </script>
+
+
+
+    </body>
+
+</html>
